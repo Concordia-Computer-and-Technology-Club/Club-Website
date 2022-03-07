@@ -1,0 +1,20 @@
+-- CreateTable
+CREATE TABLE "Member" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "profilePictureLink" TEXT NOT NULL,
+    "fName" TEXT NOT NULL,
+    "mInit" TEXT NOT NULL DEFAULT '',
+    "lName" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "year" INTEGER NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "Role" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "type" TEXT NOT NULL DEFAULT 'MEMBER',
+    "startDate" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "endDate" DATETIME,
+    "memberId" INTEGER NOT NULL,
+    CONSTRAINT "Role_memberId_fkey" FOREIGN KEY ("memberId") REFERENCES "Member" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
